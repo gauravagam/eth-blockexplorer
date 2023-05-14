@@ -1,0 +1,7 @@
+#latest_block_list .block-number-div{
+    width: 150px;
+}
+
+#latest_block_list .receipint-div{
+    max-width: 200px
+}
