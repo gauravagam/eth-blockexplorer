@@ -3,16 +3,14 @@ import { Card, CardBody, CardHeader } from 'reactstrap'
 import moment from 'moment';
 import './LatestBlockList.css';
 
-const LatestBlockList = ({alchemy}) => {
+const LatestBlockList = ({alchemy,latestBlockNumber}) => {
     const [blockList,setBlockList] = useState([]);
 
     useEffect(()=>{
         async function getLatestBlocks() {
             // eslint-disable-next-line react-hooks/exhaustive-deps
-            const latestBlockNumber = await alchemy.core.getBlockNumber();
             const blockListArr = [];
             for(let i=1;i<=5;i++){
-                console.log('i ',i)
                 blockListArr.push(await alchemy.core.getBlock(latestBlockNumber-i));
             }
             setBlockList(blockListArr);
@@ -20,31 +18,30 @@ const LatestBlockList = ({alchemy}) => {
         getLatestBlocks();
     },[])
 
-    console.log('block ',blockList[0])
     return (
-        <div id="latest_block_list">
-            <Card
-                className="my-2"
-                color="light"
-                outline
-            >
-                <CardHeader><h5>Latest Blocks</h5></CardHeader>
-                <CardBody>
-                    {blockList.map((block => {
-                        return <div key={block.number} className="d-flex py-2 border-bottom">
-                            <div className='d-flex flex-column block-number-div'>
-                                <span>{block.number}</span>
-                                <span>{moment(block.timestamp*1000).fromNow()}</span>
+        <div id="latest_block_list" className='w-50'>
+                <Card
+                    className="my-2 latest-section-bg shadow"
+                >
+                    <CardHeader tag="h5" className='latest-section-bg'>Latest Blocks</CardHeader>
+                    <CardBody>
+                    {/* <img src='loading_icon.gif' width={200} height={150} /> */}
+                    {blockList?.length === 0 ?
+                        <img src='loading_icon.gif' width={200} height={150}  className="loading-icon"/>
+                        : blockList.map((block => {
+                            return <div key={block.number} className="d-flex py-2 border-bottom">
+                                <div className='d-flex flex-column block-number-div'>
+                                    <span>{block.number}</span>
+                                    <span className='fw-light'>{moment(block.timestamp * 1000).fromNow()}</span>
+                                </div>
+                                <div className='receipint-div'>
+                                    <span className='d-inline-block text-truncate w-100'>Fee Recipient {block.miner}</span>
+                                    <span className='fw-light'>{block?.transactions?.length} txns</span>
+                                </div>
                             </div>
-                            <div className='receipint-div'>
-                                <span className='d-inline-block text-truncate w-100'>Fee Recipient {block.miner}</span>
-                                <span>{block?.transactions?.length} txns</span>
-                            </div>
-                        </div>
-                    }))}
-                </CardBody>
-            </Card>
-            
+                        }))}
+                    </CardBody>
+                </Card>
         </div>
     );
 };

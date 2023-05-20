@@ -19,9 +19,8 @@ const settings = {
 const alchemy = new Alchemy(settings);
 
 function App() {
-    console.log('alchemy ',alchemy)
   return (
-      <div>
+      <div className='app'>
         <h2 className='p-2'>Ethereum block explorer</h2>
         <HomePage alchemy={alchemy}/>
       </div>);

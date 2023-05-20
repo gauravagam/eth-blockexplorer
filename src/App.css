@@ -2,11 +2,20 @@
   box-sizing: border-box;
 }
 
+.app{
+  height: 100vh;
+  background-color: rgb(247, 247, 247);
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
+.loading-icon{
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
