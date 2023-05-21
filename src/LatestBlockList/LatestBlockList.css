@@ -3,5 +3,7 @@
 }
 
 #latest_block_list .receipint-div{
-    max-width: 200px
+    width: 200px;
+    display: flex;
+    flex-direction: column;
 }

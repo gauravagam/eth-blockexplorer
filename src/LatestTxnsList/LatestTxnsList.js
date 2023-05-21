@@ -1,5 +1,5 @@
 import React, { memo, useEffect, useState } from 'react';
-import { Card, CardBody, CardHeader, Util } from 'reactstrap';
+import { Card, CardBody, CardHeader } from 'reactstrap';
 import moment from 'moment';
 import './LatestTxnsList.css';
 import { Utils } from 'alchemy-sdk';
@@ -26,7 +26,7 @@ const LatestTxnsList = ({alchemy,latestBlockNumber}) => {
                 className="my-2 latest-section-bg shadow"
             >
                 <CardHeader tag="h5" className='latest-section-bg'>Latest Transactions</CardHeader>
-                <CardBody>
+                <CardBody className='pt-0'>
                     {txnList?.length === 0 ?
                         <img src='loading_icon.gif' width={200} height={150}  className="loading-icon"/>
                         : txnList.map(txn=>{

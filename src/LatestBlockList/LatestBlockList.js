@@ -24,8 +24,7 @@ const LatestBlockList = ({alchemy,latestBlockNumber}) => {
                     className="my-2 latest-section-bg shadow"
                 >
                     <CardHeader tag="h5" className='latest-section-bg'>Latest Blocks</CardHeader>
-                    <CardBody>
-                    {/* <img src='loading_icon.gif' width={200} height={150} /> */}
+                    <CardBody className='pt-0'>
                     {blockList?.length === 0 ?
                         <img src='loading_icon.gif' width={200} height={150}  className="loading-icon"/>
                         : blockList.map((block => {
@@ -36,7 +35,7 @@ const LatestBlockList = ({alchemy,latestBlockNumber}) => {
                                 </div>
                                 <div className='receipint-div'>
                                     <span className='d-inline-block text-truncate w-100'>Fee Recipient {block.miner}</span>
-                                    <span className='fw-light'>{block?.transactions?.length} txns</span>
+                                    <span className='fw-bold'>{block?.transactions?.length} txns</span>
                                 </div>
                             </div>
                         }))}
