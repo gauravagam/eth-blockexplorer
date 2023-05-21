@@ -46,11 +46,3 @@ const LatestBlockList = ({alchemy,latestBlockNumber}) => {
 };
 
 export default memo(LatestBlockList);
-
-// const LatestBlockDetail=memo(()=>{
-//     return (
-//         <div>
-
-//         </div>
-//     )
-// })
