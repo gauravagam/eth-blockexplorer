@@ -4,12 +4,13 @@ import moment from 'moment';
 import './LatestTxnsList.css';
 import { Utils } from 'alchemy-sdk';
 
-const LatestTxnsList = ({alchemy,latestBlockNumber}) => {
+const LatestTxnsList = ({alchemy}) => {
     const [txnList,setTxnList] = useState([]);
     const [timestamp,setTimestamp] = useState(0);
 
     useEffect(()=>{
         async function getTxnsFromBlock(){
+            const latestBlockNumber = await alchemy.core.getBlockNumber();
             const latestBlock = await alchemy.core.getBlockWithTransactions(latestBlockNumber);
             
             if(latestBlock?.transactions?.length > 0) {
@@ -19,7 +20,7 @@ const LatestTxnsList = ({alchemy,latestBlockNumber}) => {
         }
         getTxnsFromBlock();
     },[])
-    console.log('txn ',txnList[0],txnList[0]?.value?._hex)
+    
     return (
         <div id="latest_txns_list" className='w-50'>
             <Card

@@ -1,22 +1,14 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import LatestBlockList from '../LatestBlockList/LatestBlockList';
 import LatestTxnsList from '../LatestTxnsList/LatestTxnsList';
-import './HomePage.css';
 
 const HomePage = ({alchemy}) => {
-    const [latestBlockNumber,setLatestBlockNumber] = useState(null);
-    useEffect(()=>{
-        async function getLatestBlockNumber(){
-            const latestBlockNumber = await alchemy.core.getBlockNumber();
-            setLatestBlockNumber(latestBlockNumber);
-        }
-        getLatestBlockNumber()
-    },[])
+    
     return (
         <div className='px-3'>
             <div className='d-flex w-100 gap-5'>
-                <LatestBlockList alchemy={alchemy} latestBlockNumber={latestBlockNumber}/>
-                <LatestTxnsList  alchemy={alchemy} latestBlockNumber={latestBlockNumber}/>
+                <LatestBlockList alchemy={alchemy}/>
+                <LatestTxnsList  alchemy={alchemy}/>
             </div>
         </div>
     );
