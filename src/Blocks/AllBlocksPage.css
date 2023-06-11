@@ -1,3 +1,7 @@
-.table-section{
-    background-color: #FFFFFF;
+.rc-pagination-next button:after{
+    content: '>';
+}
+
+.rc-pagination-prev button:after{
+    content: '<';
 }

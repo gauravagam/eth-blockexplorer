@@ -3,6 +3,7 @@ import { Card, CardBody, CardHeader } from 'reactstrap';
 import moment from 'moment';
 import './LatestTxnsList.css';
 import { Utils } from 'alchemy-sdk';
+import { Link } from 'react-router-dom';
 
 const LatestTxnsList = ({alchemy}) => {
     const [txnList,setTxnList] = useState([]);
@@ -33,7 +34,7 @@ const LatestTxnsList = ({alchemy}) => {
                         : txnList.map(txn=>{
                             return <div key={txn.hash} className="d-flex py-2 border-bottom gap-4">
                                 <div className='d-flex flex-column txn-hash-time-wrapper'>
-                                    <span className='d-inline-block text-truncate w-100'>{txn?.hash}</span>
+                                    <span className='d-inline-block text-truncate w-100'><Link to={`/txn/${txn?.hash}`}>{txn?.hash}</Link></span>
                                     <span className='fw-light'>{timestamp ? moment(timestamp * 1000).fromNow() : ""}</span>
                                 </div>
                                 <div className='d-flex flex-column txn-frm-to-hash-wrapper'>

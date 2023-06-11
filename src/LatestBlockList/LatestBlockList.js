@@ -33,11 +33,11 @@ const LatestBlockList = ({alchemy}) => {
                         {blockList.map((block => {
                             return <div key={block.number} className="d-flex py-2 border-bottom">
                                 <div className='d-flex flex-column block-number-div'>
-                                    <span>{block.number}</span>
-                                    <span className='fw-light'>{moment(block.timestamp * 1000).fromNow()}</span>
+                                    <span><Link to={`/block/${block?.number}`}> {block?.number}</Link></span>
+                                    <span className='fw-light'>{moment(block?.timestamp * 1000).fromNow()}</span>
                                 </div>
                                 <div className='receipint-div'>
-                                    <span className='text-truncate w-100'>Fee Recipient {block.miner}</span>
+                                    <span className='text-truncate w-100'>Fee Recipient {block?.miner}</span>
                                     <span className='fw-bold'>{block?.transactions?.length} txns</span>
                                 </div>
                             </div>
