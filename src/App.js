@@ -31,7 +31,7 @@ function App() {
                 <Routes>
                     <Route path='/' element={<HomePage alchemy={alchemy} />}/>
                     <Route path='/blocks' element={<AllBlocksPage alchemy={alchemy}/>}/>
-                    <Route path='/block/:blockNumber' element={<BlockDetails alchemy={alchemy}/>}/>
+                    <Route path='/block/:blockNumber' element={<BlockDetails/>}/>
                     <Route path='/txn/:txnHash' element={<TxnDetails alchemy={alchemy}/>}/>
                 </Routes>
             </Router>

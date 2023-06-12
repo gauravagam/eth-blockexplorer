@@ -5,16 +5,12 @@ import axios from 'axios';
 import { Utils } from 'alchemy-sdk';
 import Row from '../Row/Row';
 
-const BlockDetails = ({alchemy}) => {
+const BlockDetails = () => {
     const { blockNumber = 0 } = useParams();
     const [blockObj,setBlockObj] = useState({});
 
     useEffect(()=>{
         async function getBlockDetalis(){
-            console.log('blockNUmber ',blockNumber)
-            // const blockObj = await alchemy.core.getBlockWithTransactions(Number(blockNumber));
-            // const provider = new ethers.AlchemyProvider("homestead",process.env.REACT_APP_ALCHEMY_API_KEY)
-            // const blockObj = await provider.getblo
             const response = await axios.post(process.env.REACT_APP_ALCHEMY_API_URL, {
                 jsonrpc: "2.0",
                 id: 1,
@@ -24,7 +20,6 @@ const BlockDetails = ({alchemy}) => {
                     false
                 ]
             })
-            console.log('blockObj ',response?.data?.result)
             setBlockObj(response?.data?.result);
         }
         getBlockDetalis();

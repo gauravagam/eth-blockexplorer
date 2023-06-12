@@ -13,7 +13,6 @@ const TxnDetails = ({alchemy}) => {
         async function getTxnDetails(){
             const txnObj = await alchemy.transact.getTransaction(txnHash);
             const txnReceipt = await alchemy.core.getTransactionReceipt(txnHash);
-            console.log('txnObj ',txnObj)
             setTxnDetails(txnObj);
             setTxnReceipt(txnReceipt);
         }

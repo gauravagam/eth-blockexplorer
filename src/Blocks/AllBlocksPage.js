@@ -27,29 +27,22 @@ const AllBlocksPage = ({alchemy}) => {
         getBlocks()
     },[]);
 
-    
-    // useEffect(()=>{
-        const handlePaginationClick=async(current)=>{
-            setCurrentPage(current);
-            setBlockList([])
-            const skip = (current-1)*PER_PAGE_RECORDS;
-            console.log('latestBlockNumber ',latestBlockNumber,skip);
-            const newPageBlockNumber = current > currentPage ? latestBlockNumber-skip : latestBlockNumber + skip;
-            console.log('newPageBlockNumber ',newPageBlockNumber);
-            const tmpBlockList = [];
-            for(let i=0;i<PER_PAGE_RECORDS;i++){
-                if((newPageBlockNumber-i)===0){
-                    break;
-                }
-                const newBlock = await alchemy.core.getBlock(newPageBlockNumber-i);
-                console.log('newBlock',newBlock,newBlock.number);
-                tmpBlockList.push(newBlock);
+    const handlePaginationClick=async(current)=>{
+        setCurrentPage(current);
+        setBlockList([])
+        const skip = (current-1)*PER_PAGE_RECORDS;
+        const newPageBlockNumber = current > currentPage ? latestBlockNumber-skip : latestBlockNumber + skip;
+        const tmpBlockList = [];
+        for(let i=0;i<PER_PAGE_RECORDS;i++){
+            if((newPageBlockNumber-i)===0){
+                break;
             }
-            console.log('tmpblocklist ',tmpBlockList)
-            setBlockList(tmpBlockList);
+            const newBlock = await alchemy.core.getBlock(newPageBlockNumber-i);
+            tmpBlockList.push(newBlock);
         }
-    //     handlePaginationClick()
-    // },[currentPage])
+        setBlockList(tmpBlockList);
+    }
+
     return (
         <div className='px-3'>
             <h4>Blocks</h4>
